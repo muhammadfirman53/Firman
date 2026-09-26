@@ -1,0 +1,117 @@
+{
+  "entities": {
+    "Participant": {
+      "title": "Participant Profile",
+      "description": "Registered school principal participant profile",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "schoolName": { "type": "string" },
+        "nip": { "type": "string" },
+        "role": { "type": "string" },
+        "avatarUrl": { "type": "string" },
+        "registeredAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "name", "schoolName"]
+    },
+    "ParticipantBundle": {
+      "title": "Participant Bundle",
+      "description": "Full bundle of progress, tasks, reflections, action plans, scores, and admin reviews",
+      "type": "object",
+      "properties": {
+        "participantId": { "type": "string" },
+        "profile": { "type": "object" },
+        "progress": { "type": "object" },
+        "scores": { "type": "object" },
+        "threePillars": { "type": "array" },
+        "mindset": { "type": "array" },
+        "actionPlan": { "type": "object" },
+        "assignment": { "type": "object" },
+        "reflection321": { "type": "object" },
+        "reviews": { "type": "object" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["participantId"]
+    },
+    "AdminRecord": {
+      "title": "Admin Record",
+      "description": "Registered administrator accounts for managing the training course",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "role": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "email"]
+    },
+    "ForumPost": {
+      "title": "Forum Post",
+      "description": "Discussion post in the course forum",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "authorId": { "type": "string" },
+        "authorName": { "type": "string" },
+        "authorRole": { "type": "string" },
+        "content": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "authorName", "content"]
+    },
+    "PadletNote": {
+      "title": "Padlet Note",
+      "description": "Digital reflection note submitted on the Padlet wall",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "authorName": { "type": "string" },
+        "school": { "type": "string" },
+        "content": { "type": "string" },
+        "color": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "authorName", "content"]
+    },
+    "SystemSetting": {
+      "title": "System Setting",
+      "description": "Global settings like materials and Google Meet configuration",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "value": { "type": "object" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id"]
+    }
+  },
+  "firestore": {
+    "/participants/{participantId}": {
+      "schema": "Participant",
+      "description": "Stores participant profile records"
+    },
+    "/participant_bundles/{participantId}": {
+      "schema": "ParticipantBundle",
+      "description": "Stores comprehensive participant progress, submissions, action plan, and admin reviews"
+    },
+    "/admins/{adminId}": {
+      "schema": "AdminRecord",
+      "description": "Stores administrator accounts"
+    },
+    "/forum_posts/{postId}": {
+      "schema": "ForumPost",
+      "description": "Stores course forum discussions"
+    },
+    "/padlet_notes/{noteId}": {
+      "schema": "PadletNote",
+      "description": "Stores digital reflection notes"
+    },
+    "/system_settings/{settingId}": {
+      "schema": "SystemSetting",
+      "description": "Stores course materials and meet configurations"
+    }
+  }
+}

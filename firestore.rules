@@ -1,0 +1,49 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128;
+    }
+
+    // Connection testing endpoint
+    match /test/{docId} {
+      allow read, write: if true;
+    }
+
+    // Participants collection
+    match /participants/{participantId} {
+      allow read, write: if isValidId(participantId);
+    }
+
+    // Participant bundles (progress, submissions, action plan, reflection, scores, admin reviews)
+    match /participant_bundles/{participantId} {
+      allow read, write: if isValidId(participantId);
+    }
+
+    // Administrator accounts
+    match /admins/{adminId} {
+      allow read, write: if isValidId(adminId);
+    }
+
+    // Forum posts
+    match /forum_posts/{postId} {
+      allow read, write: if isValidId(postId);
+    }
+
+    // Padlet notes
+    match /padlet_notes/{noteId} {
+      allow read, write: if isValidId(noteId);
+    }
+
+    // System settings (materials, meet link)
+    match /system_settings/{settingId} {
+      allow read, write: if isValidId(settingId);
+    }
+
+    // Default deny for everything else
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "name": "LMS Kepemimpinan Kepala Sekolah",
+  "description": "Platform Pembelajaran Pengembangan Profesional Kepala Sekolah: Kepemimpinan Berkelanjutan dan Pemimpin Perubahan dengan Pola Pikir Bertumbuh",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
